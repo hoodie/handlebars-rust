@@ -1,18 +1,5 @@
-<html>
-  <head>
-    <title>中超联赛 {{year}}</title>
-  </head>
-  <body>
-    <h1>CSL {{year}}</h1>
-    <ul>
+    outer: {{path foo}} should be "./"
     {{#each teams as |t| ~}}
-      <li class="{{ranking_label @index ../teams}}">
-      {{~log @index~}}
-      <b>{{t.name}}</b>: {{format t.pts ~}}
-      </li>
+      inner: {{path foo}} should be "./teams"
     {{/each~}}
-    </ul>
-
-    <p>Rendered by Handlebars from {{engine}} data.</p>
-  </body>
-</html>
+    outer: {{path foo}} should be "./"

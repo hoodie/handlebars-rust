@@ -159,6 +159,7 @@ impl<'a> RenderContext<'a> {
     }
 
     pub fn set_local_path_root(&mut self, path: String) {
+        println!("set_local_path_root({:?})", path);
         self.local_path_root = Some(path)
     }
 

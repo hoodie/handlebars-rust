@@ -27,6 +27,12 @@ fn format_helper(_: &Context,
     Ok(())
 }
 
+fn path_helper(_: &Context, h: &Helper, _: &Handlebars, rc: &mut RenderContext) -> Result<(), RenderError> {
+    let rendered = format!("local_path_root: {}", rc.get_local_path_root());
+    try!(rc.writer.write(rendered.into_bytes().as_ref()));
+    Ok(())
+}
+
 fn rank_helper(_: &Context,
                h: &Helper,
                _: &Handlebars,
@@ -104,6 +110,7 @@ mod rustc_example {
 
         data.insert("teams".to_string(), teams.to_json());
         data.insert("engine".to_string(), "rustc_serialize".to_json());
+        //println!("{:#?}", data);
         data
     }
 }
@@ -176,6 +183,7 @@ fn main() {
 
     handlebars.register_helper("format", Box::new(format_helper));
     handlebars.register_helper("ranking_label", Box::new(rank_helper));
+    handlebars.register_helper("path", Box::new(path_helper));
     // handlebars.register_helper("format", Box::new(FORMAT_HELPER));
 
     let data = make_data();
